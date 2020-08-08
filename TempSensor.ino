@@ -4,8 +4,8 @@
 // for DHT11, 
 //      VCC: 5V or 3V
 //      GND: GND
-//      DATA: 3
-int pinDHT11 = 2;
+//      DATA: 5
+int pinDHT11 = 5;
 SimpleDHT11 dht11(pinDHT11);
 
 float stored_temperature = -1;

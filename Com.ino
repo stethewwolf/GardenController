@@ -1,4 +1,4 @@
-const int FW_VERSION = 1;
+const int FW_VERSION = 11;
 
 const long serial_baudrate = 115200;
 const bool echo_enabled = false;
