@@ -15,6 +15,8 @@ void setup() {
 
   pump_ctrl_init();
 
+  sms_init();
+
   digitalWrite(ledActive, HIGH);
 }
 

@@ -6,10 +6,12 @@ void pump_ctrl_init(){
   digitalWrite(PUMP_PIN,LOW);
 }
 
-int get_pup_state(){
+int get_pump_state(){
   return digitalRead(PUMP_PIN);
 }
 
-void set_pump_state(int state){
+int set_pump_state(int state){
     digitalWrite(PUMP_PIN,state);
+    delay(50);
+    return get_pump_state();
 }
