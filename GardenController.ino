@@ -1,9 +1,23 @@
-void setup() {
-  // put your setup code here, to run once:
+// LED on pin 13
+const int ledActive = 13; 
 
+void setup() {
+  pinMode(ledActive, OUTPUT);
+  digitalWrite(ledActive, LOW);
+  
+  // init com
+  com_init();
+
+  // init temperature sensor 
+  dht_init();
+
+  light_init();
+
+  pump_ctrl_init();
+
+  digitalWrite(ledActive, HIGH);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  com_cycle();
 }
