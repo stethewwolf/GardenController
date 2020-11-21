@@ -5,6 +5,25 @@ const bool echo_enabled = false;
 
 void com_init(){
   Serial.begin(serial_baudrate);
+
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+
+  establishContact();  // send a byte to establish contact until receiver responds
+}
+
+void establishContact() {
+  while (Serial.available() <= 0) {
+    Serial.print("-1");   // send an initial string
+    
+    if (echo_enabled == true){
+      Serial.print('\n');
+      Serial.print('\r');
+    }
+    
+    delay(300);
+  }
 }
 
 /* 
@@ -23,16 +42,19 @@ enum commands {
   cmd_set_pump_off, // 5
   cmd_get_sms1, // 6
   cmd_get_sms2, // 7
-  cmd_get_version,
+  cmd_get_version, // 8
 };
 
 // Function that executes whatever received
 void com_cycle() {
-  if (Serial.available()){
-    int cmd = Serial.parseInt();
+  if (Serial.available()>0){
+    String scmd = Serial.readStringUntil('\n');
 
+    int cmd = scmd.toInt();
+      
     if (echo_enabled == true){
       delay(50);
+      Serial.print('\n');
       Serial.print(cmd);  
       Serial.print(':');
     }
@@ -69,9 +91,10 @@ void com_cycle() {
         Serial.print('.');
         break;
     }
+
+    Serial.print('\n');
     
     if (echo_enabled == true){
-      Serial.print('\n');
       Serial.print('\r');
     }
   }
