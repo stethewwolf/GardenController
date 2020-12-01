@@ -1,4 +1,4 @@
-const int FW_VERSION = 11;
+const int FW_VERSION = 12;
 
 const long serial_baudrate = 115200;
 const bool echo_enabled = false;
@@ -41,8 +41,7 @@ enum commands {
   cmd_set_pump_on, // 4
   cmd_set_pump_off, // 5
   cmd_get_sms1, // 6
-  cmd_get_sms2, // 7
-  cmd_get_version, // 8
+  cmd_get_version, // 7
 };
 
 // Function that executes whatever received
@@ -80,9 +79,6 @@ void com_cycle() {
         break;
       case cmd_get_sms1:
         Serial.print(sms_get_value1());
-        break;
-      case cmd_get_sms2:
-        Serial.print(sms_get_value2());
         break;
       case cmd_get_version:
         Serial.print(FW_VERSION);
