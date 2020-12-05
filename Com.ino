@@ -1,4 +1,4 @@
-const int FW_VERSION = 12;
+const int FW_VERSION = 13;
 
 const long serial_baudrate = 115200;
 const bool echo_enabled = false;
@@ -16,9 +16,9 @@ void com_init(){
 void establishContact() {
   while (Serial.available() <= 0) {
     Serial.print("-1");   // send an initial string
+    Serial.print('\n');
     
     if (echo_enabled == true){
-      Serial.print('\n');
       Serial.print('\r');
     }
     
